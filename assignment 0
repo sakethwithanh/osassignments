@@ -1,0 +1,36 @@
+section .data
+intfmt db "%d", 10, 0
+intin dd 0
+fmts db "%s", 0
+stringin times 250 db 0
+
+section .text
+global main
+extern printf
+extern scanf
+
+main:
+push rbp
+lea rdi, [intfmt] 				 
+lea rsi, [intin]			
+xor rax, rax
+call scanf 
+
+lea rdi, [fmts]
+lea rsi, [stringin]
+xor rax, rax
+call scanf
+
+lea rdi, [intfmt]
+mov rsi, [intin]
+xor rax, rax
+call printf
+
+lea rdi, [fmts]
+lea rsi, [stringin]
+xor rax, rax
+call printf
+pop rbp
+
+xor rax, rax
+ret
